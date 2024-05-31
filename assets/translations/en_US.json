@@ -1,0 +1,9 @@
+{
+    "language": "Choose Language",
+    "title": "Hello",
+    "message": "Welcome to our application!",
+    "greeting": "Good Morning",
+    "farewell": "Goodbye",
+    "login": "Login",
+    "logout": "Logout"
+}
