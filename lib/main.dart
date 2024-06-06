@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:new_project/langudage_view.dart';
+import 'package:new_project/router/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,14 +28,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Easy localization'),
+      routerDelegate: appRouter.routerDelegate,
+      routeInformationParser: appRouter.routeInformationParser,
+      routeInformationProvider: appRouter.routeInformationProvider,
     );
   }
 }
@@ -92,18 +96,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('login'.tr()),
+              onPressed: () {
+                context.pushReplacement('/details');
+              },
+              child: Text(
+                'login'.tr(),
+              ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {},
-              child: Text('logout'.tr()),
+              child: Text(
+                'logout'.tr(),
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                context.resetLocale();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const LanguageView();
+                    },
+                  ),
+                );
               },
               child: Text('farewell'.tr()),
             ),

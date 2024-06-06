@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LanguageView extends StatelessWidget {
   const LanguageView({super.key});
@@ -22,21 +23,27 @@ class LanguageView extends StatelessWidget {
         ListTile(
           leading: _icons('assets/image/english_flag.jpg'),
           title: const Text('english').tr(),
-          trailing:
-              _buildSelectedIndicator(currentLocale, const Locale('en', 'US')),
+          trailing: _buildSelectedIndicator(
+            currentLocale,
+            const Locale('en', 'US'),
+          ),
           onTap: () {
             context.setLocale(const Locale('en', 'US'));
-            Navigator.pop(context);
+            context.pop(context);
           },
         ),
         ListTile(
           title: const Text('ភាសាខ្មែរ').tr(),
           leading: _icons('assets/image/cambodia_flag.jpg'),
-          trailing:
-              _buildSelectedIndicator(currentLocale, const Locale('km', 'KH')),
+          trailing: _buildSelectedIndicator(
+            currentLocale,
+            const Locale('km', 'KH'),
+          ),
           onTap: () {
-            context.setLocale(const Locale('km', 'KH'));
-            Navigator.pop(context);
+            context.setLocale(
+              const Locale('km', 'KH'),
+            );
+            context.pop(context);
           },
         ),
       ],
